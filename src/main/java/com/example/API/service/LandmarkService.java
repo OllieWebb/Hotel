@@ -19,7 +19,7 @@ public class LandmarkService {
     public Landmark getLandmarkById(long id) {
         return landmarkRepository.findById(id).orElse(null);
     }
-    public Landmark updateLandmark(Landmark landmark){
+    public Landmark createOrUpdateLandmark(Landmark landmark){
         return landmarkRepository.save(landmark);
     }
     public void deleteLandmark(long id){

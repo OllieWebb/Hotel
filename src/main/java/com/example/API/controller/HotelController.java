@@ -2,7 +2,9 @@ package com.example.API.controller;
 
 import com.example.API.model.entities.Hotel;
 import com.example.API.service.HotelService;
+import com.example.API.service.LandmarkService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,8 @@ public class HotelController {
 
     @Autowired
     HotelService hotelService;
+    @Autowired
+    private LandmarkService landmarkService;
 
     @GetMapping("/hotels")
     @Operation(summary = "View a list of available hotels")
@@ -34,8 +38,9 @@ public class HotelController {
 
     @PutMapping("/hotel/{id}")
     @Operation(summary = "Update a hotel")
-    public Hotel updateHotel(@RequestBody Hotel hotel, @PathVariable long id){
-        return hotelService.updateHotel(hotelService.getHotelById(id));
+    public Hotel updateHotel(@Parameter(description = "Update hotel", required = true)@RequestBody Hotel hotel, @PathVariable long id){
+        hotel.setId(id);
+        return hotelService.updateHotel(hotel);
     }
 
     @DeleteMapping("/hotel/{id}")

@@ -30,14 +30,14 @@ public class LandmarkController {
     @PostMapping("/landmark/")
     @Operation(summary = "Add a landmark")
     public Landmark createLandmark(@RequestBody Landmark landmark){
-        return landmarkService.updateLandmark(landmark);
+        return landmarkService.createOrUpdateLandmark(landmark);
     }
 
     @PutMapping("/landmark/{id}")
     @Operation(summary = "Update a landmark")
     public Landmark updateLandmark(@Parameter(description = "Update landmark", required = true) @RequestBody Landmark landmark, @PathVariable long id){
         landmark.setId(id);
-        return landmarkService.updateLandmark(landmark);
+        return landmarkService.createOrUpdateLandmark(landmark);
     }
 
     @DeleteMapping("/landmark/{id}")
