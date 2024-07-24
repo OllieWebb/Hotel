@@ -15,27 +15,27 @@ public class HotelController {
     HotelService hotelService;
 
     @GetMapping("/")
-    public List<Hotel> getAllLandmarks(){
+    public List<Hotel> getAllHotel(){
         return hotelService.getAllHotels();
     }
 
     @GetMapping("/{id}")
-    public Hotel getLandmarkById(@PathVariable long id) {
+    public Hotel getHotelById(@PathVariable long id) {
         return hotelService.getHotelById(id);
     }
 
     @PostMapping("/")
-    public Hotel createLandmark(@RequestBody Hotel hotel){
+    public Hotel createHotel(@RequestBody Hotel hotel){
         return hotelService.updateHotel(hotel);
     }
 
     @PutMapping("/{id}")
-    public Hotel updateLandmark(@RequestBody Hotel landmark, @PathVariable long id){
+    public Hotel updateHotel(@RequestBody Hotel hotel, @PathVariable long id){
         return hotelService.updateHotel(hotelService.getHotelById(id));
     }
 
     @DeleteMapping
-    public void deleteLandmark(@PathVariable long id){
+    public void deleteHotel(@PathVariable long id){
         hotelService.deleteHotel(id);
     }
 
