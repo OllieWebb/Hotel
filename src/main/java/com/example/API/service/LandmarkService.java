@@ -22,7 +22,7 @@ public class LandmarkService {
     public Landmark updateLandmark(Landmark landmark){
         return landmarkRepository.save(landmark);
     }
-    public void deleteLandmark(Landmark landmark){
-        landmarkRepository.deleteById(landmark.getId());
+    public void deleteLandmark(long id){
+        landmarkRepository.deleteById(id);
     }
 }
