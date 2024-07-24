@@ -21,7 +21,7 @@ public class HotelService {
     public Hotel updateHotel(Hotel hotel){
         return hotelRepository.save(hotel);
     }
-    public void deleteHotel(Hotel hotel){
-        hotelRepository.deleteById(hotel.getId());
+    public void deleteHotel(long id){
+        hotelRepository.deleteById(id);
     }
 }
