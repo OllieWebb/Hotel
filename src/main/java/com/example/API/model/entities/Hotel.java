@@ -16,4 +16,5 @@ public class Hotel {
     private String address;
     private String countryCode;
 
+
 }
