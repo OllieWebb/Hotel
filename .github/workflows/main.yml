@@ -23,5 +23,4 @@ jobs:
           
       - name: Build and test with Maven
         run: mvn -B verify
-        working-directory: src/test/java/com/example/API
         
