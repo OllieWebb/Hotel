@@ -10,9 +10,11 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 public class LandmarkServiceTest {
@@ -52,4 +54,51 @@ public class LandmarkServiceTest {
         assertEquals("Statue of Liberty", result.get(1).getName());
     }
 
+    @Test
+    public void testGetLandmarkById() {
+        Landmark landmark = new Landmark();
+        landmark.setId(1L);
+        landmark.setName("Eiffel Tower");
+        landmark.setDescription("Big tower");
+        landmark.setCategory("Tower");
+        landmark.setCountryCode("FR");
+
+        when(landmarkRepository.findById(1L)).thenReturn(Optional.of(landmark));
+
+        Landmark result = landmarkService.getLandmarkById(1L);
+        assertEquals("Eiffel Tower", result.getName());
+        assertEquals("FR", result.getCountryCode());
+    }
+
+    @Test
+    public void testGetLandmarkByIdNotFound() {
+        when(landmarkRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+        Landmark result = landmarkService.getLandmarkById(1L);
+        assertNull(result);
+    }
+
+    @Test
+    public void testUpdateLandmark() {
+        Landmark landmark = new Landmark();
+        landmark.setId(1L);
+        landmark.setName("Eiffel Tower");
+        landmark.setDescription("Big tower");
+        landmark.setCategory("Tower");
+        landmark.setCountryCode("FR");
+
+        when(landmarkRepository.save(any(Landmark.class))).thenReturn(landmark);
+
+        Landmark result = landmarkService.updateLandmark(landmark);
+        assertEquals("Eiffel Tower", result.getName());
+        assertEquals("FR", result.getCountryCode());
+    }
+
+    @Test
+    public void testDeleteLandmark() {
+        doNothing().when(landmarkRepository).deleteById(anyLong());
+
+        landmarkService.deleteLandmark(1L);
+        verify(landmarkRepository, times(1)).deleteById(1L);
+    }
 }
