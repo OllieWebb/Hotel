@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class HotelService {
-    @Autowired
+
     private HotelRepository hotelRepository;
 
     public List<Hotel> getAllHotels() {

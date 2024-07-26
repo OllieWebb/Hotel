@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class LandmarkService {
-    @Autowired
+
     private LandmarkRepository landmarkRepository;
 
     public List<Landmark> getAllLandmarks() {
